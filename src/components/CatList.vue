@@ -1,10 +1,16 @@
 <template>
-  <Table
-    v-if="isTableVisible"
-    :headers="headers"
-    :rows="catList"
-    @selectedRow="catDetails">
-  </Table>
+  <div class="container">
+    <Table
+      v-if="isTableVisible"
+      :headers="headers"
+      :rows="catList"
+      @selectedRow="showDetails">
+    </Table>
+    <div v-if="isDetailVisible" class="details">
+      <span class="details__visits">Número de visitas: <b>{{ catDetails.views }}</b></span>
+      <img alt="cat" :src="catDetails.url" width="400" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,7 +31,9 @@ export default {
         { id: 3, name: "width" },
         { id: 4, name: "height" },
         { id: 5, name: "actions" } 
-      ]
+      ],
+      catDetails: undefined,
+      isDetailVisible: false,
     }
   },
   computed: {
@@ -44,9 +52,33 @@ export default {
         return cat;
       })
     },
-    catDetails(index) {
+    showDetails(index) {
       this.catList[index].views += 1;
+      this.catDetails = {
+        url: this.catList[index].url,
+        views: this.catList[index].views
+      }
+      this.isDetailVisible = true;
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+}
+.details {
+  width: 50%;
+  margin: 1rem;
+  text-align: center;
+
+  &__visits {
+    display: block;
+    font-size: 1.5em;
+    margin-bottom: 3rem;
+  }
+}
+</style>

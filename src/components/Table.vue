@@ -51,6 +51,7 @@ export default {
 <style lang="scss" scoped>
 .table {
   width: 50%;
+  margin: 1rem;
   border-collapse: collapse;
   
   &__header {
