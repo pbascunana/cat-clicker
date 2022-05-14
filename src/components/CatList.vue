@@ -50,33 +50,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.table {
-  width: 50%;
-  border-collapse: collapse;
-  
-  &__header {
-    &-row {
-      width: 20%;
-      padding: 1rem 0 .5rem 0;
-      border-bottom: 1px solid grey;
-    }
-  }
-
-  &__body {
-    tr {
-      border-bottom: 1px solid grey;
-      &:hover {
-        background: rgb(220,220,220);
-      }
-    }
-    &-row {
-      text-align: center;
-    }
-    &-pointer {
-      cursor: pointer;
-    }
-  }
-}
-</style>
