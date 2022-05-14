@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <Cats />
-  </div>
+  <CatList />
 </template>
 
 <script lang="ts">
-import Cats from './views/Cats.vue'
+import CatList from '../components/CatList.vue'
 export default {
-  name: "App",
+  name: "Cats",
   components: {
-    Cats
+    CatList
   }
 }
 </script>
