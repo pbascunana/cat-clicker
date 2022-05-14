@@ -72,7 +72,11 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 100%;
-  padding: 1rem;
   display: flex;
+
+  @media only screen and (max-width: 800px) {
+    display: grid;
+    text-align: center;
+  }
 }
 </style>

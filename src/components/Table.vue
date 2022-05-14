@@ -76,5 +76,9 @@ export default {
       cursor: pointer;
     }
   }
+
+  @media only screen and (max-width: 800px) {
+    width: auto;
+  }
 }
 </style>

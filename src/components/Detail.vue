@@ -26,5 +26,10 @@ export default {
     font-size: 1.5em;
     margin-bottom: 2rem;
   }
+
+  @media only screen and (max-width: 800px) {
+    width: auto;
+    text-align: center;
+  }
 }
 </style>
