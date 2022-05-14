@@ -7,7 +7,8 @@
       @selectedRow="showDetails">
     </Table>
     <div v-if="isDetailVisible" class="details">
-      <span class="details__visits">Número de visitas: <b>{{ catDetails.views }}</b></span>
+      <span>Número de visitas: <b>{{ catDetails.views }}</b></span>
+      <span>Nombre del gato: <b>{{ catDetails.name }}</b></span>
       <img alt="cat" :src="catDetails.url" width="400" />
     </div>
   </div>
@@ -56,7 +57,10 @@ export default {
       this.catList[index].views += 1;
       this.catDetails = {
         url: this.catList[index].url,
-        views: this.catList[index].views
+        views: this.catList[index].views,
+        name: this.catList[index].breeds.length > 0 
+                ? this.catList[index].breeds[0].name 
+                : ''
       }
       this.isDetailVisible = true;
     }
@@ -75,10 +79,10 @@ export default {
   margin: 1rem;
   text-align: center;
 
-  &__visits {
+  span {
     display: block;
     font-size: 1.5em;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 }
 </style>
