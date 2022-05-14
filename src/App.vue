@@ -1,19 +1,15 @@
-<script lang="ts">
-import CatList from './components/CatList.vue'
-export default {
-  name: "App",
-  components: {
-    CatList
-  }
-}
-</script>
-
 <template>
   <div>
-    <CatList />
+    <Cats />
   </div>
 </template>
 
-<style>
-
-</style>
+<script lang="ts">
+import Cats from './views/Cats.vue'
+export default {
+  name: "App",
+  components: {
+    Cats
+  }
+}
+</script>

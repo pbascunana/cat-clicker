@@ -1,28 +1,21 @@
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th v-for="header in headers" :key="header.id">
-          {{ header.name }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="cat in catList" :key="cat.id">
-        <td v-for="header in headers" :key="header.id">
-          <span v-if="header.name !== 'actions'">{{ cat[header.name] }}</span>
-          <img v-else alt="viewDetails" :src="'./src/assets/svg/eye-outline.svg'" @click="viewDetails" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <Table
+    v-if="isTableVisible"
+    :headers="headers"
+    :rows="catList"
+    @selectedRow="catDetails">
+  </Table>
 </template>
 
 <script lang="ts">
 import { api } from '../api/api.js';
+import Table from './Table.vue';
 
 export default {
   name: "CatList",
+  components: {
+    Table
+  },
   data() {
     return {
       catList: [],
@@ -35,6 +28,11 @@ export default {
       ]
     }
   },
+  computed: {
+    isTableVisible() {
+      return this.catList.length > 0;
+    }
+  },
   mounted() {
     this.getCatList();
   },
@@ -42,15 +40,43 @@ export default {
     async getCatList() {
       const { data } = await api.getCatList();
       this.catList = data.map((cat) => {
-        cat.views = 0
-        return cat
+        cat.views = 0;
+        return cat;
       })
-      console.log(this.catList);
+    },
+    catDetails(index) {
+      this.catList[index].views += 1;
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.table {
+  width: 50%;
+  border-collapse: collapse;
+  
+  &__header {
+    &-row {
+      width: 20%;
+      padding: 1rem 0 .5rem 0;
+      border-bottom: 1px solid grey;
+    }
+  }
 
+  &__body {
+    tr {
+      border-bottom: 1px solid grey;
+      &:hover {
+        background: rgb(220,220,220);
+      }
+    }
+    &-row {
+      text-align: center;
+    }
+    &-pointer {
+      cursor: pointer;
+    }
+  }
+}
 </style>
