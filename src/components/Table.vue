@@ -34,7 +34,7 @@
 
 <script lang="ts">
 export default {
-  name: "CatList",
+  name: "TableComponent",
   props: {
     headers: { type: Array, required: true},
     rows: { type: Array, required: true }
