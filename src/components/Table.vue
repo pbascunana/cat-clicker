@@ -34,7 +34,7 @@
 
 <script lang="ts">
 export default {
-  name: "CatList",
+  name: "TableComponent",
   props: {
     headers: { type: Array, required: true},
     rows: { type: Array, required: true }
@@ -51,6 +51,7 @@ export default {
 <style lang="scss" scoped>
 .table {
   width: 50%;
+  margin: 1rem;
   border-collapse: collapse;
   
   &__header {

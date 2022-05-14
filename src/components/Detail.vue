@@ -1,0 +1,30 @@
+<template>
+  <div class="details">
+    <span>Número de visitas: <b>{{ details.views }}</b></span>
+    <span v-if="details.name">Nombre del gato: <b>{{ details.name }}</b></span>
+    <img alt="cat" :src="details.url" width="400" />
+  </div>
+</template>
+
+<script>
+export default {
+  name: "CatDetailsComponent",
+  props: {
+    details: { type: Object, required: true }
+  }  
+}
+</script>
+
+<style lang="scss" scoped>
+.details {
+  width: 50%;
+  margin: 1rem;
+  text-align: center;
+
+  span {
+    display: block;
+    font-size: 1.5em;
+    margin-bottom: 2rem;
+  }
+}
+</style>
