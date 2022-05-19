@@ -2,7 +2,7 @@
   <div class="details">
     <span>Número de visitas: <b>{{ details.views }}</b></span>
     <span v-if="details.name">Nombre del gato: <b>{{ details.name }}</b></span>
-    <img alt="cat" :src="details.url" width="400" />
+    <img alt="cat" :src="details.url" width="400" @click="addCatViews" />
   </div>
 </template>
 
@@ -11,7 +11,12 @@ export default {
   name: "CatDetailsComponent",
   props: {
     details: { type: Object, required: true }
-  }  
+  },
+  methods: {
+    addCatViews() {
+      this.$emit('clickImage', { views: ++this.details.views, id: this.details.id });
+    }
+  }
 }
 </script>
 

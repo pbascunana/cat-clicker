@@ -8,12 +8,13 @@
     </Table>
     <Detail
       v-if="isDetailVisible"
-      :details="catDetails">
+      :details="catDetails"
+      @clickImage="addViewHandler">
     </Detail>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { api } from '../api/api.js';
 
 import Detail from '../components/Detail.vue';
@@ -32,7 +33,7 @@ export default {
         { id: 2, name: "views" },
         { id: 3, name: "width" },
         { id: 4, name: "height" },
-        { id: 5, name: "actions" } 
+        { id: 5, name: "actions" }
       ],
       catDetails: undefined,
       isDetailVisible: false,
@@ -55,8 +56,8 @@ export default {
       })
     },
     showDetails(index) {
-      this.catList[index].views += 1;
       this.catDetails = {
+        id: this.catList[index].id,
         url: this.catList[index].url,
         views: this.catList[index].views,
         name: this.catList[index].breeds.length > 0 
@@ -64,6 +65,10 @@ export default {
                 : ''
       }
       this.isDetailVisible = true;
+    },
+    addViewHandler(value) {
+      let index = this.catList.findIndex((cat) => cat.id === value.id);
+      this.catList[index].views = value.views;
     }
   }
 }
